@@ -13,5 +13,3 @@ namespace NLayer.Core.Entities
         public ICollection<Product> Products { get; set; }
     }
 }
-Footer
-© 2022 GitHub,
