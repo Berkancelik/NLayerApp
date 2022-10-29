@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayerCore
+namespace NLayer.Repository
 {
-    public class Class1
+    public class AppDbContext:DbContext
     {
     }
 }

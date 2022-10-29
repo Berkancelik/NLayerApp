@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nlayer.Core.Services
+namespace NLayer.Core.Services
 {
-    public  interface IService<T> where T : class
+    public interface IService<T> where T : class
     {
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAlllAsync();
