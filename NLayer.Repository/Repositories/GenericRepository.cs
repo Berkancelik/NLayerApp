@@ -35,6 +35,11 @@ namespace NLayer.Repository.Repositories
             return await _dbSet.AnyAsync(expression);
         }
 
+        public IQueryable<T> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<T> GetAlll()
         {
             return _dbSet.AsNoTracking().AsQueryable();
