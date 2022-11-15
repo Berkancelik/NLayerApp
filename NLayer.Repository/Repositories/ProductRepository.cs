@@ -15,9 +15,10 @@ namespace NLayer.Repository.Repositories
         {
         }
 
-        public Task<List<Product>> GetProductWithCategory()
+        public async Task<List<Product>> GetProductWithCategory()
         {
-            throw new NotImplementedException();
+            //Eager Loading
+            return await _context.Products.Include(x => x.Category).ToListAsync();
         }
     }
 }
