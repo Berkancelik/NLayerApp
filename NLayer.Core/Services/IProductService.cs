@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Core.Repositories
+namespace NLayer.Core.Services
 {
-    public interface IProductRepository: IGenericRepository<Product>
+    public interface IProductService:IService<Product>
     {
         Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductWithCategory();
+
     }
 }
