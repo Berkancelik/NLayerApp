@@ -41,7 +41,8 @@ namespace NLayer.Service.Service
             return await _reposityory.AnyAsync(expression);
         }
 
-        public async Task<IEnumerable<T>> GetAlllAsync()
+      
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _reposityory.GetAll().ToListAsync();
         }

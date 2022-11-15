@@ -25,7 +25,7 @@ namespace NLayer.API.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var products = await _service.GetAlllAsync();
+            var products = await _service.GetAllAsync();
             var productsDtos =  _mapper.Map<List<ProductDto>>(products.ToList());
             //return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
             return CreateActionResult<List<ProductDto>>(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
