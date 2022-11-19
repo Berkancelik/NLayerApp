@@ -1,0 +1,23 @@
+﻿using Microsoft.EntityFrameworkCore;
+using NLayer.Core.Entities;
+using NLayer.Core.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NLayer.Repository.Repositories
+{
+    internal class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+    {
+        public CategoryRepository(AppDbContext context, DbSet<Category> dbSet) : base(context, dbSet)
+        {
+        }
+
+        public async Task<Category> GetSingleCategoryBtIdWithProductAsync(int categoryid)
+        {
+            return await _context.Categories.Include(x=>x.Products).Where(x => x.Id==categoryid).SingleOrDefaultAsync(); 
+        }
+    }
+}
