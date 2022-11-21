@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Entities;
 using NLayer.Core.Services;
@@ -8,6 +9,7 @@ using System.Linq;
 
 namespace NLayer.API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : CustomBaseController
