@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace NLayer.API.Middlewares
 {
-    public class UseCustomExceptionHandler
+    public static class UseCustomExceptionHandler
     {
         public static void UserCustomException(this IApplicationBuilder app)
         {
