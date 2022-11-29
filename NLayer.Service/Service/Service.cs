@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NLayer.Core.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using NLayer.Service.Exceptions;
 
 namespace NLayer.Service.Service
 {
@@ -49,7 +50,12 @@ namespace NLayer.Service.Service
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _reposityory.GetByIdAsync(id);
+            var hasProduct =  await _reposityory.GetByIdAsync(id);
+            if (hasProduct ==null)
+            {
+                throw new NotFoundException($"{typeof(T).Name} {id} not found");
+            }
+            return hasProduct;
         }
 
         public async Task RemoveAsync(T entity)
