@@ -74,13 +74,20 @@ namespace NLayer.Caching
 
             if (product == null)
             {
-                throw new NLayer.Service.Exceptions.NotFoundException($"{typeof(Product).Name}({id}) not found");
+                throw new NotFoundException($"{typeof(Product).Name}({id}) not found");
             }
 
             return Task.FromResult(product);
         }
 
-     
+        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
+        {
+            var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
+
+            var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
+
+            return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
+        }
 
         public async Task RemoveAsync(Product entity)
         {
@@ -113,15 +120,6 @@ namespace NLayer.Caching
         {
             _memoryCache.Set(CacheProductKey, await _repository.GetAll().ToListAsync());
 
-        }
-
-        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductWithCategory()
-        {
-            var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
-
-            var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
-
-            return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
         }
     }
 }
