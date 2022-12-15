@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using NLayer.Core;
 using NLayer.Core.DTOs;
 using NLayer.Core.Entities;
 using NLayer.Core.Repositories;
