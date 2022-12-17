@@ -1,4 +1,4 @@
-namespace NLayer.Web.Models
+﻿namespace NLayer.Web.Models
 {
     public class ErrorViewModel
     {
