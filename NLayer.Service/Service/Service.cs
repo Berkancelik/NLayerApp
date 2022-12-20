@@ -37,7 +37,7 @@ namespace NLayer.Service.Service
             return await _reposityory.AnyAsync(expression);
         }
 
-      
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _reposityory.GetAll().ToListAsync();
@@ -45,8 +45,8 @@ namespace NLayer.Service.Service
 
         public async Task<T> GetByIdAsync(int id)
         {
-            var hasProduct =  await _reposityory.GetByIdAsync(id);
-            if (hasProduct ==null)
+            var hasProduct = await _reposityory.GetByIdAsync(id);
+            if (hasProduct == null)
             {
                 throw new NotFoundException($"{typeof(T).Name} {id} not found");
             }
@@ -73,9 +73,9 @@ namespace NLayer.Service.Service
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
-           return _reposityory.Where(expression);
+            return _reposityory.Where(expression);
         }
 
-    
+
     }
 }

@@ -2,7 +2,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using NLayer.Repository;
-using NLayer.Service.Mapping;
 using NLayer.Web.Modules;
 using System.Reflection;
 
