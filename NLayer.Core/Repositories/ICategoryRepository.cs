@@ -9,6 +9,6 @@ namespace NLayer.Core.Repositories
 {
     public interface ICategoryRepository:IGenericRepository<Category>
     {
-        Task<Category> GetSingleCategoryBtIdWithProductAsync(int categoryid);
+        Task<Category> GetSingleCategoryByIdWithProductAsync(int categoryid);
     }
 }
