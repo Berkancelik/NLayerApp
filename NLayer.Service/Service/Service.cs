@@ -1,14 +1,9 @@
-﻿using NLayer.Core.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using NLayer.Core.Repositories;
 using NLayer.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using NLayer.Core.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
 using NLayer.Service.Exceptions;
+using System.Linq.Expressions;
 
 namespace NLayer.Service.Service
 {
@@ -42,7 +37,7 @@ namespace NLayer.Service.Service
             return await _reposityory.AnyAsync(expression);
         }
 
-      
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _reposityory.GetAll().ToListAsync();
@@ -50,8 +45,8 @@ namespace NLayer.Service.Service
 
         public async Task<T> GetByIdAsync(int id)
         {
-            var hasProduct =  await _reposityory.GetByIdAsync(id);
-            if (hasProduct ==null)
+            var hasProduct = await _reposityory.GetByIdAsync(id);
+            if (hasProduct == null)
             {
                 throw new NotFoundException($"{typeof(T).Name} {id} not found");
             }
@@ -78,9 +73,9 @@ namespace NLayer.Service.Service
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
-           return _reposityory.Where(expression);
+            return _reposityory.Where(expression);
         }
 
-    
+
     }
 }
