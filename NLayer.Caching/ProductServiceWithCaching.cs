@@ -1,12 +1,13 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using NLayer.Core;
 using NLayer.Core.DTOs;
 using NLayer.Core.Entities;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWork;
-
+ using NLayer.Service.Exceptions;
 using System.Linq.Expressions;
 
 namespace NLayer.Caching
@@ -32,13 +33,6 @@ namespace NLayer.Caching
             }
 
 
-
-        public async Task<Product> AddAsync(Product entity)
-        {
-            await _repository.AddAsync(entity);
-            await _unitOfWork.CommitAsync();
-            await CacheAllProductsAsync();
-            return entity;
         }
 
         public async Task<Product> AddAsync(Product entity)
@@ -75,13 +69,20 @@ namespace NLayer.Caching
 
             if (product == null)
             {
-
+                throw new NotFoundException($"{typeof(Product).Name}({id}) not found");
             }
 
             return Task.FromResult(product);
         }
 
+        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
+        {
+            var products = _memoryCache.Get<IEnumerable<Product>>(CacheProductKey);
 
+            var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
+
+            return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
+        }
 
         public async Task RemoveAsync(Product entity)
         {
@@ -115,3 +116,5 @@ namespace NLayer.Caching
             _memoryCache.Set(CacheProductKey, await _repository.GetAll().ToListAsync());
 
         }
+    }
+}
