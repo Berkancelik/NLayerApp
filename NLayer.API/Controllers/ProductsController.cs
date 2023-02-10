@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Entities;
 using NLayer.Core.Services;
-using System.Linq;
 
 namespace NLayer.API.Controllers
 {
@@ -21,7 +18,7 @@ namespace NLayer.API.Controllers
         public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
         {
             _mapper = mapper;
-            _service = productService;   
+            _service = productService;
         }
 
         [HttpGet("GetProductsWithCategory")]
@@ -38,7 +35,7 @@ namespace NLayer.API.Controllers
         public async Task<IActionResult> All()
         {
             var products = await _service.GetAllAsync();
-            var productsDtos =  _mapper.Map<List<ProductDto>>(products.ToList());
+            var productsDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             //return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
             return CreateActionResult<List<ProductDto>>(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
         }
@@ -62,7 +59,7 @@ namespace NLayer.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(ProductUpdateDto productUpdateDto)
         {
-             await _service.UpdateAsync(_mapper.Map<Product>(productUpdateDto));
+            await _service.UpdateAsync(_mapper.Map<Product>(productUpdateDto));
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 

@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
-using NLayer.Core;
 using NLayer.Core.DTOs;
 using NLayer.Core.Entities;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWork;
 using NLayer.Service.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Service.Services
 {
@@ -25,7 +19,7 @@ namespace NLayer.Service.Services
             _productRepository = productRepository;
         }
 
-   
+
 
         public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductWithCategory()
         {

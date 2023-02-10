@@ -20,6 +20,6 @@ namespace NLayer.API.Controllers
             return CreateActionResult(await _categoryService.GetSingleCategoryBtIdWithProductAsync(categoryId));
         }
 
-     
+
     }
 }

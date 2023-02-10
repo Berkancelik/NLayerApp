@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using NLayer.Caching;
 using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWork;
@@ -13,7 +12,7 @@ using Module = Autofac.Module;
 
 namespace NLayer.API.Modules
 {
-    public class RepoServiceModule:Module
+    public class RepoServiceModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -32,7 +31,7 @@ namespace NLayer.API.Modules
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            builder.Register<ProductServiceWithCaching>().As(IProductService);
+            //builder.Register<ProductServiceWithCaching>().As(IProductService); bug 
 
             //InstancvePerLifetimeScope => Scope
             //InstancePerDependency => transiet

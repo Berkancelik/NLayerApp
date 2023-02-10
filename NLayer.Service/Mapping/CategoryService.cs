@@ -5,11 +5,6 @@ using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWork;
 using NLayer.Service.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Service.Mapping
 {
@@ -29,7 +24,7 @@ namespace NLayer.Service.Mapping
             var category = await _categoryRepository.GetSingleCategoryBtIdWithProductAsync(categoryid);
             var categoryDto = _mapper.Map<CategoryWithProductsDto>(category);
 
-            return  CustomResponseDto<CategoryWithProductsDto>.Success(200, categoryDto);
+            return CustomResponseDto<CategoryWithProductsDto>.Success(200, categoryDto);
         }
     }
 }
